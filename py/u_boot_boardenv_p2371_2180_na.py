@@ -19,7 +19,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 env__usb_dev_ports = (
-    {"tgt_usb_ctlr": "0", "host_dev_link": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:13:1.0-scsi-0:0:0:0"},
+    {"tgt_usb_ctlr": "0", "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:13:1.0-scsi-0:0:0:0"},
 )
 
 env__block_devs = (
