@@ -20,11 +20,11 @@
 
 console_dev=/dev/serial/by-path/pci-0000:00:1d.0-usb-0:1.4:1.0-port0
 recovery_impl=relay
-recovery_relay_bin="${HOME}/usb-relays/bin"
+recovery_relay_bin="${HOME}/ubtest-usb-relays/bin"
 recovery_relay_type=numato
 recovery_relay_dev=/dev/serial/by-path/pci-0000:00:1d.0-usb-0:1.1:1.0
 recovery_relay_force_recovery=2
 recovery_relay_reset=1
 board_usb_dev=/dev/usbdev-seaboard
 download_impl=tegra-uboot-flasher
-download_tubf_bin="${HOME}/git_wa/tegra-uboot-flasher/scripts"
+download_tubf_bin="${HOME}/ubtest-tegra-uboot-flasher/scripts"

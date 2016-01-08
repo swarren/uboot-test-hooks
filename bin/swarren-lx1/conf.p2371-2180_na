@@ -20,8 +20,8 @@
 
 console_dev=/dev/serial/by-path/pci-0000:00:14.0-usb-0:6:1.2-port0
 recovery_impl=pm342
-recovery_bin="${HOME}/shared/git_wa/nvidia-tools-private/board_automation"
+recovery_bin="${HOME}/ubtest-nvidia-board-automation"
 recovery_serial=SRW-0
 board_usb_dev=/dev/usbdev-p2371-2180
 download_impl=l4t-exec-uboot
-download_l4t="${HOME}/shared/nvrepo_wa/l4t-r23.1-l4t/out/l4t-t210ref-release-hard/full_linux_for_tegra/Linux_for_Tegra"
+download_l4t="${HOME}/ubtest-l4t-exec-uboot"
