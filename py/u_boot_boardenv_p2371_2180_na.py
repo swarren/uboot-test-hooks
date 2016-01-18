@@ -18,11 +18,28 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+env__mount_points = (
+    "/mnt/ubtest-mnt-p2371-2180-na",
+)
+
 env__usb_dev_ports = (
-    {"tgt_usb_ctlr": "0", "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:13:1.0-scsi-0:0:0:0"},
+    {
+        "tgt_usb_ctlr": "0",
+        "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:13:1.0-scsi-0:0:0:0",
+    },
 )
 
 env__block_devs = (
-    {"type": "mmc", "id": "0"}, # eMMC; always present
-    {"type": "mmc", "id": "1"}, # SD card; present since I plugged one in
+    # eMMC; always present
+    {
+        "type": "mmc",
+        "id": "0",
+        "writable_fs_partition": 1,
+        "writable_fs_subdir": "tmp/",
+    },
+    # SD card; present since I plugged one in
+    {
+        "type": "mmc",
+        "id": "1"
+    },
 )
