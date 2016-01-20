@@ -26,6 +26,8 @@ env__usb_dev_ports = (
     {
         "tgt_usb_ctlr": "0",
         "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:13:1.0-scsi-0:0:0:0",
+        "host_usb_dev_node": "/dev/usbdev-p2371-2180",
+        "host_usb_port_path": "3-13",
     },
 )
 
@@ -43,3 +45,20 @@ env__block_devs = (
         "id": "1"
     },
 )
+
+env__dfu_configs = (
+    # eMMC, partition 1
+    {
+        "alt_info": "/dfu_test.bin ext4 0 1;/dfu_dummy.bin ext4 0 1",
+        "cmd_params": "mmc 0",
+    },
+    # RAM
+    # This is disabled, since running "dfu" in U-Boot currently fails due to
+    # memory fragmentation. If the eMMC entry above is disabled, this entry
+    # will work fine though.
+    #{
+    #    "alt_info": "alt0 ram 80000000 01000000;alt1 ram 81000000 01000000",
+    #    "cmd_params": "ram na",
+    #},
+)
+
