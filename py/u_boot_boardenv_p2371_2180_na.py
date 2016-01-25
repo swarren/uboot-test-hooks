@@ -53,13 +53,10 @@ env__dfu_configs = (
         "cmd_params": "mmc 0",
     },
     # RAM
-    # This is disabled, since running "dfu" in U-Boot currently fails due to
-    # memory fragmentation. If the eMMC entry above is disabled, this entry
-    # will work fine though.
-    #{
-    #    "alt_info": "alt0 ram 80000000 01000000;alt1 ram 81000000 01000000",
-    #    "cmd_params": "ram na",
-    #},
+    {
+        "alt_info": "alt0 ram 80000000 01000000;alt1 ram 81000000 01000000",
+        "cmd_params": "ram na",
+    },
 )
 
 env__net_dhcp_server = True
