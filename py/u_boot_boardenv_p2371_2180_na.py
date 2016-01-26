@@ -59,6 +59,8 @@ env__dfu_configs = (
     },
 )
 
+env__net_uses_pci = True
+
 env__net_dhcp_server = True
 
 env__net_tftp_readable_file = {
