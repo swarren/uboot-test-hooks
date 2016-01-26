@@ -24,6 +24,7 @@ env__mount_points = (
 
 env__usb_dev_ports = (
     {
+        "fixture_id": "micro_b",
         "tgt_usb_ctlr": "0",
         "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:13:1.0-scsi-0:0:0:0",
         "host_usb_dev_node": "/dev/usbdev-p2371-2180",
@@ -34,6 +35,7 @@ env__usb_dev_ports = (
 env__block_devs = (
     # eMMC; always present
     {
+        "fixture_id": "emmc",
         "type": "mmc",
         "id": "0",
         "writable_fs_partition": 1,
@@ -41,6 +43,7 @@ env__block_devs = (
     },
     # SD card; present since I plugged one in
     {
+        "fixture_id": "sd",
         "type": "mmc",
         "id": "1"
     },
@@ -49,11 +52,13 @@ env__block_devs = (
 env__dfu_configs = (
     # eMMC, partition 1
     {
+        "fixture_id": "emmc",
         "alt_info": "/dfu_test.bin ext4 0 1;/dfu_dummy.bin ext4 0 1",
         "cmd_params": "mmc 0",
     },
     # RAM
     {
+        "fixture_id": "ram",
         "alt_info": "alt0 ram 80000000 01000000;alt1 ram 81000000 01000000",
         "cmd_params": "ram na",
     },
