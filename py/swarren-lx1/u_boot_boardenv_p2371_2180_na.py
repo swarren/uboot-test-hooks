@@ -33,12 +33,6 @@ env__usb_dev_ports = (
 )
 
 env__block_devs = (
-    # eMMC; always present
-    {
-        "fixture_id": "emmc",
-        "type": "mmc",
-        "id": "0",
-    },
     # SD card; present since I plugged one in
     {
         "fixture_id": "sd",
@@ -46,6 +40,12 @@ env__block_devs = (
         "id": "1",
         "writable_fs_partition": 1,
         "writable_fs_subdir": "tmp/",
+    },
+    # eMMC; always present
+    {
+        "fixture_id": "emmc",
+        "type": "mmc",
+        "id": "0",
     },
 )
 
