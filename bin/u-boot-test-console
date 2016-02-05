@@ -32,4 +32,4 @@ if [ -z "${console_baud}" ]; then
     console_baud=115200
 fi
 
-exec cu -s "${console_baud}" -l "${console_dev}"
+exec picocom -b "${console_baud}" "${console_dev}"
