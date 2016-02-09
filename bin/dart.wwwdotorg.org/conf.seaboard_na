@@ -19,6 +19,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 console_dev=/dev/serial/by-path/pci-0000:00:1d.0-usb-0:1.4:1.0-port0
+power_impl=none_yet
 recovery_impl=relay
 recovery_relay_bin="${HOME}/ubtest-usb-relays/bin"
 recovery_relay_type=numato

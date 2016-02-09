@@ -19,6 +19,6 @@
 # DEALINGS IN THE SOFTWARE.
 
 # Basic power on
-"${recovery_bin}/boardctl" --target pm342 --serial "${recovery_serial}" power_on
+"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" power_on
 # Put board into recovery so it doesn't boot
-"${recovery_bin}/boardctl" --target pm342 --serial "${recovery_serial}" recovery
+"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" recovery

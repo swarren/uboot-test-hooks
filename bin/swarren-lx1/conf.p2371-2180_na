@@ -19,9 +19,10 @@
 # DEALINGS IN THE SOFTWARE.
 
 console_dev=/dev/serial/by-path/pci-0000:00:14.0-usb-0:6:1.2-port0
+power_impl=pm342
 recovery_impl=pm342
-recovery_bin="${HOME}/ubtest-nvidia-board-automation"
-recovery_serial=SRW-0
+nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
+pm342_serial=SRW-0
 board_usb_dev=/dev/usbdev-p2371-2180
 download_impl=l4t-exec-uboot
 download_l4t="${HOME}/ubtest-l4t-exec-uboot"
