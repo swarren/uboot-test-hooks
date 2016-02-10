@@ -20,5 +20,5 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-"${download_tubf_bin}/build" --boards "${board_type}" import-uboot "${U_BOOT_BUILD_DIR}"
-"${download_tubf_bin}/tegra-uboot-flasher" exec "${board_type}"
+"${tubf_bin}/build" --boards "${tubf_board}" import-uboot "${U_BOOT_BUILD_DIR}"
+"${tubf_bin}/tegra-uboot-flasher" exec --usb-port-path "${board_usb_port_path}" "${tubf_config}"
