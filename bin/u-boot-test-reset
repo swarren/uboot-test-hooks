@@ -37,5 +37,6 @@ for ((i = 0; i <= 100; i++)); do
     fi
     sleep 0.1
 done
+sleep 1
 
 . "${bin_dir}/download.${download_impl}"
