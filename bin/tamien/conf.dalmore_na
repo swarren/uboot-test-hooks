@@ -18,24 +18,15 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# One line per physical USB port that is attached to any U-Boot device you
-# wish to test (e.g. serial dongle, flashing device, the board's device-mode
-# port, etc.)
-
-# dalmore-a04
-# PM342 debug board (dalmore-a04-a)
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.1", ENV{UBTEST_DEVICE}="1"
-# Device-mode port
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.2", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-tegra114-dalmore-a04"
-
-# P2371-0000
-# PM342 debug board (tegra210-p2371-0000-a)
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.4.1", ENV{UBTEST_DEVICE}="1"
-# Device-mode port
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.2", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-tegra210-p2371-0000"
-
-# Configure the port with permissions that will allow the test program to run
-# as an unprivileged user. In the example below, all users are given access.
-# If you need more restrictive permissions, set "OWNER" or "GROUP" instead,
-# and run the test as that user/group.
-ACTION=="add", ENV{UBTEST_DEVICE}=="1", MODE:="666"
+console_dev=/dev/serial/by-path/pci-0000:00:1d.7-usb-0:4.1:1.2-port0
+power_impl=eimt_pm342
+eimt_board=tegra114-dalmore-a04
+recovery_impl=pm342
+nv_board_automation_bin="${HOME}/ubtest-gitmaster-tegra-tools-private/board_automation"
+pm342_serial=dalmore-a04-a
+board_usb_dev=/dev/usbdev-tegra114-dalmore-a04
+download_impl=tegra-uboot-flasher
+tubf_bin="${HOME}/ubtest-tegra-uboot-flasher/scripts"
+tubf_board=dalmore
+tubf_config=dalmore-t40s-1600
+board_usb_port_path=2-4.2
