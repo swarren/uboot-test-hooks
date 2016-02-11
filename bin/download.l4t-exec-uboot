@@ -18,5 +18,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+link=`readlink "${board_usb_dev}"`
+instance=`echo "${link}" | sed -e "s@bus/usb@@"`
+
 cp "${U_BOOT_BUILD_DIR}"/u-boot{,.bin,.dtb,-dtb.bin} "${download_l4t}/bootloader/t210ref/${board_type}/"
-sudo "${download_l4t}/bootloader/exec-uboot.sh" "${board_type}"
+sudo "${download_l4t}/bootloader/exec-uboot.sh" --instance "${instance}" "${board_type}"
