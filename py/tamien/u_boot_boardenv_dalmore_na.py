@@ -18,22 +18,21 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-#env__mount_points = (
-#    "/mnt/tegra114-dalmore-a04-part1",
-#)
+env__mount_points = (
+    "/mnt/tegra114-dalmore-a04-part1",
+)
 
-# U-Boot port doesn't yet enable USB device mode
-#env__usb_dev_ports = (
-#    {
-#        "fixture_id": "micro_b",
-#        "tgt_usb_ctlr": "0",
-#        "host_ums_dev_node": "/dev/disk/by-path/not_yet_determined",
-#        "host_usb_dev_node": "/dev/usbdev-tegra114-dalmore-a04",
-#        "host_usb_port_path": "2-4.2",
-#    },
-#)
+env__usb_dev_ports = (
+    {
+        "fixture_id": "micro_b",
+        "tgt_usb_ctlr": "0",
+        "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:1d.7-usb-0:4.2:1.0-scsi-0:0:0:0",
+        "host_usb_dev_node": "/dev/usbdev-tegra114-dalmore-a04",
+        "host_usb_port_path": "2-4.2",
+    },
+)
 
-#env__block_devs = (
+env__block_devs = (
 #    # SD card; present since I plugged one in
 #    {
 #        "fixture_id": "sd",
@@ -42,18 +41,18 @@
 #        "writable_fs_partition": 1,
 #        "writable_fs_subdir": "tmp/",
 #    },
-#    # eMMC; always present
-#    {
-#        "fixture_id": "emmc",
-#        "type": "mmc",
-#        "id": "0",
-#        # FIXME: Move to SD card ASAP
-#        "writable_fs_partition": 1,
-#        "writable_fs_subdir": "tmp/",
-#    },
-#)
+    # eMMC; always present
+    {
+        "fixture_id": "emmc",
+        "type": "mmc",
+        "id": "0",
+        # FIXME: Move to SD card ASAP
+        "writable_fs_partition": 1,
+        "writable_fs_subdir": "tmp/",
+    },
+)
 
-#env__dfu_configs = (
+env__dfu_configs = (
 #    # SD card, partition 1, ext4 filesystem
 #    {
 #        "fixture_id": "sd_fs",
@@ -90,18 +89,18 @@
 #            4096 + 1,
 #        ),
 #    },
-#    # RAM
-#    {
-#        "fixture_id": "ram",
-#        "alt_info": "alt0 ram 80000000 01000000;alt1 ram 81000000 01000000",
-#        "cmd_params": "ram na",
+    # RAM
+    {
+        "fixture_id": "ram",
+        "alt_info": "alt0 ram 80000000 01000000;alt1 ram 81000000 01000000",
+        "cmd_params": "ram na",
 #        "test_sizes": (
 #            1024 * 1024 - 1,
 #            1024 * 1024,
 #            8 * 1024 * 1024,
 #        ),
-#    },
-#)
+    },
+)
 
 env__net_uses_usb = True
 
