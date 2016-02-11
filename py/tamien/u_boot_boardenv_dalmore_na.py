@@ -103,12 +103,17 @@
 #    },
 #)
 
-#env__net_uses_pci = True
-#
-#env__net_dhcp_server = True
-#
-#env__net_tftp_readable_file = {
-#    "fn": "ubtest-readable.bin",
-#    "size": 5058624,
-#    "crc32": "c2244b26",
-#}
+env__net_uses_usb = True
+
+env__net_static_env_vars = [
+    ("ipaddr", "192.168.100.100"),
+    ("netmask", "255.255.255.0"),
+    ("serverip", "192.168.100.1"),
+    ("tftpserverip", "192.168.100.1"),
+]
+
+env__net_tftp_readable_file = {
+    "fn": "ubtest-readable.bin",
+    "size": 5058624,
+    "crc32": "c2244b26",
+}
