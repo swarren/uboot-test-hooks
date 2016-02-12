@@ -101,13 +101,3 @@ env__dfu_configs = (
 #        ),
     },
 )
-
-#env__net_uses_pci = True
-#
-#env__net_dhcp_server = True
-#
-#env__net_tftp_readable_file = {
-#    "fn": "ubtest-readable.bin",
-#    "size": 5058624,
-#    "crc32": "c2244b26",
-#}
