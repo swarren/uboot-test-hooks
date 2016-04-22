@@ -1,4 +1,4 @@
-# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2015-2016, NVIDIA CORPORATION. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -18,24 +18,12 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# One line per physical USB port that is attached to any U-Boot device you
-# wish to test (e.g. serial dongle, flashing device, the board's device-mode
-# port, etc.)
-
-# Jetson TK1 (PM375)
-# Serial console
-ACTION=="add", KERNELS=="ttyS0", ENV{UBTEST_DEVICE}="1"
-# Device-mode port
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-10.3", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-jetson-tk1"
-
-# Jetson TX1 (P2371-2180)
-# PM342 debug board
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-6", ENV{UBTEST_DEVICE}="1"
-# Device-mode port
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-13", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-p2371-2180"
-
-# Configure the port with permissions that will allow the test program to run
-# as an unprivileged user. In the example below, all users are given access.
-# If you need more restrictive permissions, set "OWNER" or "GROUP" instead,
-# and run the test as that user/group.
-ACTION=="add", ENV{UBTEST_DEVICE}=="1", MODE:="666"
+console_dev=/dev/ttyS0
+power_impl=manual
+recovery_impl=manual
+board_usb_dev=/dev/usbdev-jetson-tk1
+download_impl=tegra-uboot-flasher
+tubf_bin="${HOME}/shared/git_wa/tegra-uboot-flasher/scripts"
+tubf_board=jetson-tk1
+tubf_config=jetson-tk1
+board_usb_port_path=3-10.3
