@@ -28,6 +28,14 @@ ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.1", ENV{UBTEST_DEVICE}="1"
 # Device-mode port
 ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.2", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-tegra114-dalmore-a04"
 
+# Jetson TK1
+# Phidgets
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.7.7", ENV{UBTEST_DEVICE}="1"
+# Console port
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.7.4", ENV{UBTEST_DEVICE}="1"
+# Device-mode port
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.7.3", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-tegra124-jetson-tk1"
+
 # P2371-0000
 # PM342 debug board (tegra210-p2371-0000-a)
 ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.4.1", ENV{UBTEST_DEVICE}="1"
