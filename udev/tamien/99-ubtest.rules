@@ -34,22 +34,16 @@ ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.4.1", ENV{UBTEST_DEVICE}="1"
 # Device-mode port
 ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.2", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-tegra210-p2371-0000"
 
-# The following aren't used (yet?) by ubtest, but we need permissions of all
-# PM342 boards to be readable so that the NV PM342 scripts' device enumeration
-# code doesn't find a device with matching vendor/device ID yet permissions
-# that prevent it from checking if the serial number matches
-
-# tegra132-norrin-a
-# PM342 debug board
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.7.6", ENV{UBTEST_DEVICE}="1"
-
-# AUSVRL3631 (???)
-# PM342 debug board
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.4.3", ENV{UBTEST_DEVICE}="1"
-
-# AUSVRL2644 (??/)
-# PM342 debug board
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.4.2", ENV{UBTEST_DEVICE}="1"
+# NVIDIA's PM342 control scripts search for devices with matching USB vendor
+# and device ID, then check each to verify if it matches the requested serial
+# number. If a USB device node isn't r/w for the user running the script,
+# the device can be enumerated, but the serial number can't be queried. The
+# PM342 scripts (or libftdi/libusb called by them) treat this as an error,
+# which stops the script from looking for further PM342 devices. This will
+# sometimes prevent the scripts seeing a PM342, even if that specific device
+# has permissions that allow the serial number to be read. Fix this by opening
+# the permissions for all PM342 devices.
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6011", ENV{UBTEST_DEVICE}="1"
 
 # Configure the port with permissions that will allow the test program to run
 # as an unprivileged user. In the example below, all users are given access.
