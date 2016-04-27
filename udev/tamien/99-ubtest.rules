@@ -51,7 +51,7 @@ ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-3.2", ENV{UBTEST_DEVICE}="1", SYML
 # sometimes prevent the scripts seeing a PM342, even if that specific device
 # has permissions that allow the serial number to be read. Fix this by opening
 # the permissions for all PM342 devices.
-ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6011", ENV{UBTEST_DEVICE}="1"
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ENV{UBTEST_DEVICE}="1"
 
 # Configure the port with permissions that will allow the test program to run
 # as an unprivileged user. In the example below, all users are given access.
