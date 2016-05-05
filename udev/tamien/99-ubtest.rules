@@ -22,6 +22,14 @@
 # wish to test (e.g. serial dongle, flashing device, the board's device-mode
 # port, etc.)
 
+# Beaver
+# Phidgets
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-2", ENV{UBTEST_DEVICE}="1"
+# Console port
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.5", ENV{UBTEST_DEVICE}="1"
+# Device-mode port
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.7.2", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-tegra30-beaver"
+
 # dalmore-a04
 # PM342 debug board (dalmore-a04-a)
 ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="2-4.1", ENV{UBTEST_DEVICE}="1"
