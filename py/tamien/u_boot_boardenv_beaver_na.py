@@ -18,6 +18,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+import os
+
 env__mount_points = (
     "/mnt/tegra30-beaver-part1",
 )
@@ -107,6 +109,17 @@ env__net_static_env_vars = [
     ("serverip", "192.168.100.1"),
     ("tftpserverip", "192.168.100.1"),
 ]
+
+# The U-Boot branch used for these builds is old enough that PCIe auto-probes
+# and we end up with both a PCIe and a USB Ethernet device. By default, U-Boot
+# happens to pick the one we don't want to use, so we must tell it which to
+# use. We don't define this variable statically, since the Ethernet device
+# naming is different in the branches (mainline) that don't have this problem,
+# so this value is not valid there:-( In the future, if we pull more recent
+# versions of U-Boot into NVIDIA's git server, we will need to differentiate
+# between the various branches here, by checking for more specific strings.
+if 'gitmaster_3rdparty_uboot' in os.environ.get('JOB_NAME', ''):
+    env__net_static_env_vars.append(('ethact', 'asx0'))
 
 env__net_tftp_readable_file = {
     "fn": "ubtest-readable.bin",
