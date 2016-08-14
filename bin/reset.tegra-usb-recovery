@@ -1,4 +1,4 @@
-# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2015-2016, NVIDIA CORPORATION. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -18,16 +18,15 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-console_dev=/dev/serial/by-path/pci-0000:00:14.0-usb-0:6:1.2-port0
-power_impl=pm342
-flash_impl=none
-reset_impl=tegra-usb-recovery
-recovery_impl=pm342
-nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
-pm342_serial=SRW-0
-board_usb_dev=/dev/usbdev-p2371-2180
-download_impl=tegra-uboot-flasher
-tubf_bin="${HOME}/shared/git_wa/tegra-uboot-flasher/scripts"
-tubf_board=dalmore
-tubf_config=dalmore-t40s-1600
-board_usb_port_path=3-13
+. "${bin_dir}/recovery.${recovery_impl}"
+
+# USB enumeration delay
+for ((i = 0; i <= 100; i++)); do
+    if [ -e "${board_usb_dev}" ]; then
+        break
+    fi
+    sleep 0.1
+done
+sleep 1
+
+. "${bin_dir}/download.${download_impl}"

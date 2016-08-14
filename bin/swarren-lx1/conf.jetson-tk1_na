@@ -21,6 +21,7 @@
 console_dev=/dev/ttyS0
 power_impl=manual
 flash_impl=none
+reset_impl=tegra-usb-recovery
 recovery_impl=manual
 board_usb_dev=/dev/usbdev-jetson-tk1
 download_impl=tegra-uboot-flasher
