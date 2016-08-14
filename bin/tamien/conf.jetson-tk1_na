@@ -21,6 +21,7 @@
 console_dev=/dev/serial/by-path/pci-0000:00:1d.7-usb-0:4.7.4:1.0-port0
 power_impl=eimt_phidgets
 flash_impl=none
+reset_impl=tegra-usb-recovery
 eimt_board=tegra124-jetson-tk1
 phidgets_serial=109237
 phidgets_relay_power=0

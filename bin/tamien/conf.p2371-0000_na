@@ -21,6 +21,7 @@
 console_dev=/dev/serial/by-path/pci-0000:00:1d.7-usb-0:3.4.1:1.3-port0
 power_impl=eimt_pm342
 flash_impl=none
+reset_impl=tegra-usb-recovery
 eimt_board=tegra210-p2371-0000
 recovery_impl=pm342
 nv_board_automation_bin="${HOME}/ubtest-gitmaster-tegra-tools-private/board_automation"
