@@ -20,6 +20,7 @@
 
 console_dev=/dev/serial/by-path/pci-0000:00:14.0-usb-0:6:1.2-port0
 power_impl=pm342
+flash_impl=none
 recovery_impl=pm342
 nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
 pm342_serial=SRW-0

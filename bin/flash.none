@@ -18,16 +18,4 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-console_dev=/dev/serial/by-path/pci-0000:00:1d.7-usb-0:4.1:1.2-port0
-power_impl=eimt_pm342
-flash_impl=none
-eimt_board=tegra114-dalmore-a04
-recovery_impl=pm342
-nv_board_automation_bin="${HOME}/ubtest-gitmaster-tegra-tools-private/board_automation"
-pm342_serial=dalmore-a04-a
-board_usb_dev=/dev/usbdev-tegra114-dalmore-a04
-download_impl=tegra-uboot-flasher
-tubf_bin="${HOME}/ubtest-tegra-uboot-flasher/scripts"
-tubf_board=dalmore
-tubf_config=dalmore-t40s-1600
-board_usb_port_path=2-4.2
+# No flashing needed
