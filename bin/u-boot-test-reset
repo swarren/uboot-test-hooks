@@ -28,15 +28,4 @@ board_ident="$2"
 hostname="`hostname`"
 . "${bin_dir}/${hostname}/conf.${board_type}_${board_ident}"
 
-. "${bin_dir}/recovery.${recovery_impl}"
-
-# USB enumeration delay
-for ((i = 0; i <= 100; i++)); do
-    if [ -e "${board_usb_dev}" ]; then
-        break
-    fi
-    sleep 0.1
-done
-sleep 1
-
-. "${bin_dir}/download.${download_impl}"
+. "${bin_dir}/reset.${reset_impl}"
