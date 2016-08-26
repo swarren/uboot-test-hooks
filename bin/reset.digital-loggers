@@ -20,3 +20,7 @@
 
 curl --data ${power_port}=CCL -o /dev/null --silent \
 	http://${power_user:-admin}:${power_pass:-1234}@${power_ip}/outlet
+
+if [ ! -z "${download_impl}" ]; then
+    . "${bin_dir}/download.${download_impl}"
+fi

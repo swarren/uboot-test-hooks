@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2016 Konsulko Group. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -20,21 +18,9 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-set -e
+# The sunxi-fel tool supports passing a bus:dev to use.  However this value
+# is not stable and may change over resets.  So at this time we assume that only
+# one board will be in FEL mode at a given time (or baring that, the first
+# available board is the one we are to test
 
-bin_dir="`dirname $0`"
-board_type="$1"
-board_ident="$2"
-hostname="`hostname`"
-. "${bin_dir}/${hostname}/conf.${board_type}_${board_ident}"
-
-if [ -z "${console_baud}" ]; then
-    console_baud=115200
-fi
-
-# Force a reset into FEL mode
-if [ "${recovery_impl}" == "sunxi-fel" ]; then
-    echo reset >> "${console_dev}"
-fi
-
-exec picocom -b "${console_baud}" "${console_dev}"
+sunxi-fel uboot "${U_BOOT_BUILD_DIR}"/u-boot-sunxi-with-spl.bin
