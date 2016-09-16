@@ -205,6 +205,8 @@ of which must be specified in the board configuration files:
   - The top-level directory (which contains `flash.sh` and `*.conf`).
   - The `bootloader/` directory.
   - The `kernel/` directory.
+- `imx_usb`; see
+  https://github.com/boundarydevices/imx_usb_loader.
 - As-yet-unpublished scripts to control various USB relay boards.
 
 U-Boot's test framework also requires a `dfu-util` that supports the -p
