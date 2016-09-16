@@ -21,7 +21,7 @@
 console_dev=/dev/serial/by-path/pci-0000:00:1d.7-usb-0:4.5:1.0-port0
 power_impl=eimt_phidgets
 flash_impl=none
-reset_impl=tegra-usb-recovery
+reset_impl=recovery_download
 eimt_board=tegra30-beaver
 phidgets_serial=132707
 phidgets_relay_power=0
