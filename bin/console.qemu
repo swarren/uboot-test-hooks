@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2016 Konsulko Group. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -20,12 +18,18 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-set -e
+ARGS=""
+if [ ! -z "${qemu_extra_args}" ]; then
+  ARGS+="${qemu_extra_args} "
+fi
 
-bin_dir="`dirname $0`"
-board_type="$1"
-board_ident="$2"
-hostname="`hostname`"
-. "${bin_dir}/${hostname}/conf.${board_type}_${board_ident}"
+# We must have these arguments
+ARGS+="-M ${qemu_machine}"
+ARGS+=" ${qemu_kernel_args}"
 
-. "${bin_dir}/console.${console_impl:-picocom}"
+# If we have a helper script to run, run it.
+if [ ! -z "${qemu_helper_script}" ]; then
+  . "${bin_dir}/qemu.${qemu_helper_script}"
+fi
+
+exec "${qemu_binary}" ${ARGS}

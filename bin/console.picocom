@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -20,12 +18,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-set -e
+if [ -z "${console_baud}" ]; then
+    console_baud=115200
+fi
 
-bin_dir="`dirname $0`"
-board_type="$1"
-board_ident="$2"
-hostname="`hostname`"
-. "${bin_dir}/${hostname}/conf.${board_type}_${board_ident}"
-
-. "${bin_dir}/console.${console_impl:-picocom}"
+exec picocom -b "${console_baud}" "${console_dev}"
