@@ -21,7 +21,7 @@
 console_impl=qemu
 qemu_machine="vexpress-a9"
 qemu_binary="qemu-system-arm"
-qemu_extra_args="-nographic -m 1G -tftp /tftpboot"
+qemu_extra_args="-nographic -m 1G -tftp ${UBOOT_TRAVIS_BUILD_DIR}"
 qemu_kernel_args="-kernel ${U_BOOT_BUILD_DIR}/u-boot"
 reset_impl=none
 flash_impl=none
