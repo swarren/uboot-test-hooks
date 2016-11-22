@@ -58,7 +58,7 @@ def op_push_dir(host, local_dir):
 def op_rm_list(host, rm_list_file):
     print('RM LIST: ' + rm_list_file)
     params = {'op': 100, 'DIR': '/'}
-    response = requests.get('http://%s/command.cgi' % host, params)
+    response = requests.get('http://%s/command.cgi' % host, params=params)
     response.raise_for_status()
     lines = response.text.splitlines()
     if lines[0] != 'WLANSD_FILELIST':
@@ -78,7 +78,7 @@ def op_rm_list(host, rm_list_file):
                 if fnmatch.fnmatch(remote_filename, rmspec):
                     print('..DELETE: ' + remote_filename)
                     params = {'DEL': '/' + remote_filename}
-                    response = requests.get('http://%s/upload.cgi' % host, params)
+                    response = requests.get('http://%s/upload.cgi' % host, params=params)
                     print('.... ' + str(response.status_code))
                     response.raise_for_status()
                     if 'SUCCESS' not in response.text:
