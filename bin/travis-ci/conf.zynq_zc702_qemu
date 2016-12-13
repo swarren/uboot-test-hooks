@@ -22,6 +22,6 @@ console_impl=qemu
 qemu_machine="xilinx-zynq-a9"
 qemu_binary="qemu-system-arm"
 qemu_extra_args="-display none -m 40000000 -nographic -serial /dev/null -serial mon:stdio -monitor null"
-qemu_kernel_args="-kernel ${U_BOOT_BUILD_DIR}/u-boot"
+qemu_kernel_args="-device loader,file=${U_BOOT_BUILD_DIR}/u-boot-dtb.bin,addr=0x4000000,cpu-num=0"
 reset_impl=none
 flash_impl=none
