@@ -1,4 +1,4 @@
-# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2015-2018, NVIDIA CORPORATION. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -18,9 +18,4 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# The "recovery" command doesn't work on p2771-0000, so do this manually:
-"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" recovery_down
-sleep 0.25
 "${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" reset
-sleep 0.25
-"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" recovery_up

@@ -21,4 +21,4 @@
 # Basic power on
 "${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" power_on
 # Put board into recovery so it doesn't boot
-"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" recovery
+. "${bin_dir}/recovery.pm342"

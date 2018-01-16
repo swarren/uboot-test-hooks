@@ -1,4 +1,4 @@
-# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2015-2018, NVIDIA CORPORATION. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -18,9 +18,14 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# The "recovery" command doesn't work on p2771-0000, so do this manually:
-"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" recovery_down
-sleep 0.25
-"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" reset
-sleep 0.25
-"${nv_board_automation_bin}/boardctl" --target pm342 --serial "${pm342_serial}" recovery_up
+console_dev=/dev/serial/by-path/pci-0000:00:14.0-usb-0:14:1.2-port0
+power_impl=pm342
+flash_impl=recovery_l4t
+recovery_impl=pm342
+flash_l4t="${HOME}/ubtest-l4t-r28.1-p2771-0000"
+flash_l4t_uboot_path=bootloader/t186ref/p2771-0000/500/
+flash_l4t_board=jetson-tx2
+reset_impl=pm342
+nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
+pm342_serial=SRW-1
+board_usb_dev=/dev/usbdev-p2771-0000
