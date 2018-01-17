@@ -1,4 +1,4 @@
-# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2015-2018, NVIDIA CORPORATION. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -18,13 +18,39 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+syms_file="${U_BOOT_BUILD_DIR}/u-boot.sym"
+if [ -f "${syms_file}" ]; then
+  set +e
+  grep -q cboot "${syms_file}" >/dev/null 2>&1
+  grep_ret=$?
+  set -e
+  if [ ${grep_ret} -eq 0 ]; then
+    boot_from_cboot=1
+  else
+    boot_from_cboot=0
+  fi
+else
+  boot_from_cboot=0
+fi
+
 console_dev=/dev/serial/by-path/pci-0000:00:14.0-usb-0:6:1.2-port0
 power_impl=pm342
-flash_impl=none
-reset_impl=recovery_download
 recovery_impl=pm342
 nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
 pm342_serial=SRW-0
 board_usb_dev=/dev/usbdev-p2371-2180
-download_impl=l4t-exec-uboot
-download_l4t="${HOME}/ubtest-l4t-exec-uboot"
+
+if [ ${boot_from_cboot} -eq 1 ]; then
+  echo conf.p2371-2180_na: U-Boot branch requires flashing for testing
+  flash_impl=recovery_l4t
+  flash_l4t="${HOME}/ubtest-l4t-r28.1-p2371-2180"
+  flash_l4t_uboot_path=bootloader/t210ref/p2371-2180/
+  flash_l4t_board=jetson-tx1
+  reset_impl=pm342
+else
+  echo conf.p2371-2180_na: U-Boot branch can use USB RCM for testing
+  flash_impl=none
+  reset_impl=recovery_download
+  download_impl=l4t-exec-uboot
+  download_l4t="${HOME}/ubtest-l4t-exec-uboot"
+fi
