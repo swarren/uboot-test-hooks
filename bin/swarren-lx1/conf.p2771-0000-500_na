@@ -29,3 +29,4 @@ reset_impl=pm342
 nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
 pm342_serial=SRW-1
 board_usb_dev=/dev/usbdev-p2771-0000
+board_usb_port_path=3-1

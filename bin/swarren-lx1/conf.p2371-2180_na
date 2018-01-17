@@ -39,6 +39,7 @@ recovery_impl=pm342
 nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
 pm342_serial=SRW-0
 board_usb_dev=/dev/usbdev-p2371-2180
+board_usb_port_path=3-13
 
 if [ ${boot_from_cboot} -eq 1 ]; then
   echo conf.p2371-2180_na: U-Boot branch requires flashing for testing

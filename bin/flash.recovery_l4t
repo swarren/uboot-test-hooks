@@ -30,13 +30,11 @@ done
 sleep 1
 
 cp "${U_BOOT_BUILD_DIR}"/u-boot-dtb.bin "${flash_l4t}/${flash_l4t_uboot_path}/u-boot.bin"
-# FIXME: Need to enhance flash.sh to accept --instance parameter and pass to
-# tegraflash.py. Sigh.
 # FIXME: To speed things up here, we could add "-k kernel" and just reflash the
 # "kernel" partition (which holds U-Boot when it's in use). However, this
 # relies on having the right L4T already flashed, which isn't likely on my
 # system since I use the board for other things.
-(cd "${flash_l4t}" && sudo "${flash_l4t}/flash.sh" -r "${flash_l4t_board}" mmcblk0p1)
+(cd "${flash_l4t}" && sudo "${flash_l4t}/flash.sh" --usb-instance "${board_usb_port_path}" -r "${flash_l4t_board}" mmcblk0p1)
 # Prevent the system from booting before the reset script is run. Otherwise,
 # either (a) the test system won't capture the start of the UART log, or (b)
 # U-Boot will start running early, and the test system will start capturing
