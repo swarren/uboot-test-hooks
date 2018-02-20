@@ -27,3 +27,47 @@ env__net_tftp_readable_file = {
     "size": 5058624,
     "crc32": "c2244b26",
 }
+
+env__mmc_rd_configs = (
+    {
+        "fixture_id": "emmc-boot0",
+        "is_emmc": True,
+        "devid": 0,
+        "partid": 1,
+        "sector": 0x10,
+        "count": 1,
+    },
+    {
+        "fixture_id": "emmc-boot1",
+        "is_emmc": True,
+        "devid": 0,
+        "partid": 2,
+        "sector": 0x10,
+        "count": 1,
+    },
+    {
+        "fixture_id": "emmc-data",
+        "is_emmc": True,
+        "devid": 0,
+        "partid": 0,
+        "sector": 0x10,
+        "count": 0x1000,
+    },
+    {
+        "fixture_id": "sd-mbr",
+        "is_emmc": False,
+        "devid": 1,
+        "partid": None,
+        "sector": 0,
+        "count": 1,
+        "crc32": "8f6ecf0d",
+    },
+    {
+        "fixture_id": "sd-large",
+        "is_emmc": False,
+        "devid": 1,
+        "partid": None,
+        "sector": 0x10,
+        "count": 0x1000,
+    },
+)
