@@ -21,7 +21,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 console_impl=qemu
-qemu_machine="virt,highmem=off"
+qemu_machine="virt"
 qemu_binary="qemu-system-arm"
 qemu_extra_args="-nographic -netdev user,id=net0,tftp=${UBOOT_TRAVIS_BUILD_DIR} -device e1000,netdev=net0"
 qemu_kernel_args="-bios ${U_BOOT_BUILD_DIR}/u-boot.bin"
