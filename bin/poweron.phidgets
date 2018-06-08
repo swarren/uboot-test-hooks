@@ -1,4 +1,4 @@
-# Copyright (c) 2015-2016, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2015-2018, NVIDIA CORPORATION. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -18,19 +18,15 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-console_dev=/dev/ttyS0
-power_impl=phidgets
-flash_impl=none
-reset_impl=recovery_download
-recovery_impl=phidgets
-phidgets_dir="${HOME}/phidgets"
-phidgets_serial=109237
-phidgets_relay_power=0
-phidgets_relay_recovery=1
-phidgets_relay_reset=2
-board_usb_dev=/dev/usbdev-jetson-tk1
-download_impl=tegra-uboot-flasher
-tubf_bin="${HOME}/ubtest-tegra-uboot-flasher/scripts"
-tubf_board=jetson-tk1
-tubf_config=jetson-tk1
-board_usb_port_path=3-2.3
+export LD_LIBRARY_PATH="${phidgets_dir}/lib:${LD_LIBRARY_PATH}"
+
+# Put board into recovery so it doesn't boot
+"${phidgets_dir}/bin/phidgets-relay" ${phidgets_serial} ${phidgets_relay_recovery} 1
+sleep 0.25
+# Pulse power button to turn board on
+"${phidgets_dir}/bin/phidgets-relay" ${phidgets_serial} ${phidgets_relay_power} 1
+sleep 0.75
+"${phidgets_dir}/bin/phidgets-relay" ${phidgets_serial} ${phidgets_relay_power} 0
+sleep 0.25
+# Release recovery
+"${phidgets_dir}/bin/phidgets-relay" ${phidgets_serial} ${phidgets_relay_recovery} 0

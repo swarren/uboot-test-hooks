@@ -26,21 +26,21 @@ env__usb_dev_ports = (
     {
         "fixture_id": "micro_b",
         "tgt_usb_ctlr": "0",
-        "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:10.3:1.0-scsi-0:0:0:0",
+        "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:2.3:1.0-scsi-0:0:0:0",
         "host_usb_dev_node": "/dev/usbdev-jetson-tk1",
-        "host_usb_port_path": "3-10.3",
+        "host_usb_port_path": "3-2.3",
     },
 )
 
 env__block_devs = (
-    ## SD card; present since I plugged one in
-    #{
-    #    "fixture_id": "sd",
-    #    "type": "mmc",
-    #    "id": "1",
-    #    "writable_fs_partition": 1,
-    #    "writable_fs_subdir": "tmp/",
-    #},
+    # SD card; present since I plugged one in
+    {
+        "fixture_id": "sd",
+        "type": "mmc",
+        "id": "1",
+        "writable_fs_partition": 1,
+        "writable_fs_subdir": "tmp/",
+    },
     # eMMC; always present
     {
         "fixture_id": "emmc",
@@ -50,43 +50,42 @@ env__block_devs = (
 )
 
 env__dfu_configs = (
-#    # SD card, partition 1, ext4 filesystem
-#    {
-#        "fixture_id": "sd_fs",
-#        "alt_info": "/dfu_test.bin ext4 1 1;/dfu_dummy.bin ext4 1 1",
-#        "cmd_params": "mmc 1",
-#        "test_sizes": (
-#            64 - 1,
-#            64,
-#            64 + 1,
-#            4096 - 1,
-#        ),
-#    },
-#    # SD card, partition 3, partition
-#    {
-#        "fixture_id": "sd_part",
-#        "alt_info": "/dfu_test.bin part 1 3;/dfu_dummy.bin ext4 1 1",
-#        "cmd_params": "mmc 1",
-#        "test_sizes": (
-#            128 - 1,
-#            128,
-#            128 + 1,
-#            4096,
-#        ),
-#    },
-#    # SD card, partition 3, raw device (location overlays partition 3)
-#    {
-#        "fixture_id": "sd_raw",
-#        "alt_info": "/dfu_test.bin raw 4196352 18432;/dfu_dummy.bin ext4 1 1", # triggers bug
-##        "alt_info": "/dfu_test.bin raw 4196352 18432;/dfu_test.bin raw 4196352 18432", # works OK
-#        "cmd_params": "mmc 1",
-#        "test_sizes": (
-##            960 - 1,
-#            960,
-##            960 + 1,
-##            4096 + 1,
-#        ),
-#    },
+    # SD card, partition 1, ext4 filesystem
+    {
+        "fixture_id": "sd_fs",
+        "alt_info": "/dfu_test.bin ext4 1 1;/dfu_dummy.bin ext4 1 1",
+        "cmd_params": "mmc 1",
+        "test_sizes": (
+            64 - 1,
+            64,
+            64 + 1,
+            4096 - 1,
+        ),
+    },
+    # SD card, partition 3, partition
+    {
+        "fixture_id": "sd_part",
+        "alt_info": "/dfu_test.bin part 1 3;/dfu_dummy.bin ext4 1 1",
+        "cmd_params": "mmc 1",
+        "test_sizes": (
+            128 - 1,
+            128,
+            128 + 1,
+            4096,
+        ),
+    },
+    # SD card, partition 3, raw device (location overlays partition 3)
+    {
+        "fixture_id": "sd_raw",
+        "alt_info": "/dfu_test.bin raw 4196352 18432;/dfu_dummy.bin ext4 1 1",
+        "cmd_params": "mmc 1",
+        "test_sizes": (
+            960 - 1,
+            960,
+            960 + 1,
+            4096 + 1,
+        ),
+    },
     # RAM
     {
         "fixture_id": "ram",

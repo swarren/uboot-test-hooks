@@ -25,14 +25,22 @@
 # Jetson TK1 (PM375)
 # Serial console
 ACTION=="add", KERNELS=="ttyS0", ENV{UBTEST_DEVICE}="1"
+# Phidgets control board
+ACTION=="add", SUBSYSTEMS=="usb", DRIVER=="usb", KERNELS=="3-2.7", ENV{UBTEST_DEVICE}="1", SYMLINK+="phidgets-jetson-tk1"
 # Device-mode port
-ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-10.3", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-jetson-tk1"
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-2.3", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-jetson-tk1"
 
 # Jetson TX1 (P2371-2180)
 # PM342 debug board
 ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-6", ENV{UBTEST_DEVICE}="1"
 # Device-mode port
 ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-13", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-p2371-2180"
+
+# Jetson TX2 (P2771-0000)
+# PM342 debug board
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-14", ENV{UBTEST_DEVICE}="1"
+# Device-mode port
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="3-1", ENV{UBTEST_DEVICE}="1", SYMLINK+="usbdev-p2771-0000"
 
 # NVIDIA's PM342 control scripts search for devices with matching USB vendor
 # and device ID, then check each to verify if it matches the requested serial
