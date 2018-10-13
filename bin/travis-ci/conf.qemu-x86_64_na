@@ -21,7 +21,7 @@
 console_impl=qemu
 qemu_machine="pc"
 qemu_binary="qemu-system-x86_64"
-qemu_extra_args="-nographic -cpu qemu64 -netdev user,id=net0,tftp=/tftpboot -device e1000,netdev=net0"
+qemu_extra_args="-nographic -cpu qemu64 -netdev user,id=net0,tftp=${UBOOT_TRAVIS_BUILD_DIR} -device e1000,netdev=net0"
 qemu_kernel_args="-bios ${U_BOOT_BUILD_DIR}/u-boot.rom"
 reset_impl=none
 flash_impl=none
