@@ -26,9 +26,9 @@ env__usb_dev_ports = (
     {
         "fixture_id": "micro_b",
         "tgt_usb_ctlr": "0",
-        "host_ums_dev_node": "/dev/disk/by-path/pci-0000:00:14.0-usb-0:13:1.0-scsi-0:0:0:0",
+        "host_ums_dev_node": "/dev/disk/pci-0000:00:14.0-usb-0:5:1.0-scsi-0:0:0:0",
         "host_usb_dev_node": "/dev/usbdev-p2371-2180",
-        "host_usb_port_path": "3-13",
+        "host_usb_port_path": "1-5",
     },
 )
 

@@ -33,13 +33,13 @@ else
   boot_from_cboot=0
 fi
 
-console_dev=/dev/serial/by-path/pci-0000:00:14.0-usb-0:6:1.2-port0
+console_dev=/dev/console-p2371-2180
 power_impl=pm342
 recovery_impl=pm342
 nv_board_automation_bin="${HOME}/ubtest-nvidia-board-automation"
 pm342_serial=SRW-0
 board_usb_dev=/dev/usbdev-p2371-2180
-board_usb_port_path=3-13
+board_usb_port_path=1-5
 
 if [ ${boot_from_cboot} -eq 1 ]; then
   echo conf.p2371-2180_na: U-Boot branch requires flashing for testing

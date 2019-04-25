@@ -33,4 +33,4 @@ download_impl=tegra-uboot-flasher
 tubf_bin="${HOME}/ubtest-tegra-uboot-flasher/scripts"
 tubf_board=jetson-tk1
 tubf_config=jetson-tk1
-board_usb_port_path=3-2.3
+board_usb_port_path=1-8.3
