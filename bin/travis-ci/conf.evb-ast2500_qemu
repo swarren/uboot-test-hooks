@@ -1,0 +1,11 @@
+# Copyright 2019 IBM Corp.
+# Joel Stanley <joel@jms.id.au>
+# SPDX-License-Identifier: GPL-2.0+
+
+console_impl=qemu
+qemu_machine="ast2500-evb"
+qemu_binary="qemu-system-arm"
+qemu_extra_args="-nographic -m 512M -serial mon:stdio -net nic,model=ftgmac100 -net user,id=net0,tftp=${UBOOT_TRAVIS_BUILD_DIR}"
+qemu_kernel_args="-drive file=${U_BOOT_BUILD_DIR}/flash.img,format=raw,if=mtd"
+reset_impl=none
+flash_impl=create_image_32mb
