@@ -1,0 +1,9 @@
+# Copyright 2019 IBM Corp.
+# Joel Stanley <joel@jms.id.au>
+# SPDX-License-Identifier: GPL-2.0+
+
+# TODO: Work out a better temp directory
+FLASH_IMG="${U_BOOT_BUILD_DIR}"/flash.img
+
+dd if=/dev/zero of="${FLASH_IMG}" count=32 bs=1M
+dd if="${U_BOOT_BUILD_DIR}"/u-boot.bin of="${FLASH_IMG}" conv=notrunc
