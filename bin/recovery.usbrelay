@@ -1,4 +1,6 @@
-# Copyright (c) 2015-2016, NVIDIA CORPORATION. All rights reserved.
+#!/bin/bash
+
+# Copyright 2020 Google LLC
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -18,19 +20,13 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-. "${bin_dir}/recovery.${recovery_impl}"
+usbrelay "${relay_type}${usbrelay_recovery}=1"
+usbrelay "${relay_type}${usbrelay_reset}=1"
 
-# USB enumeration delay
-for ((i = 0; i <= 100; i++)); do
-    if [ -e "${board_usb_dev}" ]; then
-        break
-    fi
-    sleep 0.1
-done
-if [ ! -e "${board_usb_dev}" ]; then
-    echo "Cannot find device ${board_usb_dev}"
-    exit 1
-fi
-sleep 1
+sleep 0.1
 
-. "${bin_dir}/download.${download_impl}"
+usbrelay "${relay_type}${usbrelay_reset}=0"
+
+sleep 0.1
+
+usbrelay "${relay_type}${usbrelay_recovery}=0"
