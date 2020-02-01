@@ -18,7 +18,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# Designed for using SDwire uSD myx and ykush USB power control:
+# Designed for using SDwire uSD mux and ykush USB power control:
 # https://wiki.tizen.org/SDWire
 # https://www.yepkit.com/products/ykush
 
@@ -26,7 +26,30 @@
 # sd-mux-ctrl at https://git.tizen.org/cgit/tools/testlab/sd-mux/
 # ykushcmd at https://github.com/Yepkit/ykush
 
-# Power off
-ykushcmd -s ${ykush_serial} -d ${ykush_port}
+mount_dir=/media/${mount_point}
 
-. flash.sdwire_common_mount
+# Power off
+. poweroff.${power_impl}
+
+# Switch over to get USB card access
+sd-mux-ctrl --device-serial ${sdwire_serial} --ts
+
+# Wait for the device to become available
+done=false
+for i in {0..9}; do
+    if dd if=${raw_device} of=/dev/null count=1 >/dev/null 2>&1; then
+        done=true
+        break
+    fi
+
+    sleep 1
+done
+if [[ $done = false ]]; then
+    echo "Failed to access ${raw_device} after 10 tries"
+    exit 1
+fi
+
+writer.${flash_writer} ${raw_device} ${U_BOOT_BUILD_DIR}
+
+# Back to card access for the DUT
+sd-mux-ctrl --device-serial ${sdwire_serial} --dut

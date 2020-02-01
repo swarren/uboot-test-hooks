@@ -20,7 +20,7 @@
 
 console_dev=/dev/ttyusb_port1
 reset_impl=ykush
-flash_impl=sdwire_ykush_mount
+flash_impl=sdwire_poweroff_mount
 power_impl=ykush
 
 flash_writer=rpi3_mount
