@@ -18,5 +18,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-curl --data ${power_port}=CCL -o /dev/null --silent \
+curl --data ${power_port}=OFF -o /dev/null --silent \
+	http://${power_user:-admin}:${power_pass:-1234}@${power_ip}/outlet
+sleep .5
+curl --data ${power_port}=ON -o /dev/null --silent \
 	http://${power_user:-admin}:${power_pass:-1234}@${power_ip}/outlet
