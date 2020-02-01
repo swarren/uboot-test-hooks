@@ -1,0 +1,54 @@
+# Copyright 2019 Google LLC. All rights reserved.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+
+# Designed for using SDwire uSD mux and ykush USB power control:
+# https://wiki.tizen.org/SDWire
+# https://dlidirect.com/products/new-pro-switch
+
+# It requires these tools:
+# sd-mux-ctrl a`t https://git.tizen.org/cgit/tools/testlab/sd-mux/
+# curl to control the power switch
+
+# Power off
+curl --data ${power_port}=OFF -o /dev/null --silent \
+	http://${power_user:-admin}:${power_pass:-1234}@${power_ip}/outlet
+
+# Switch over to get USB card access
+sd-mux-ctrl --device-serial ${sdwire_serial} --ts
+
+# Wait for the device to become available
+done=false
+for i in {0..9}; do
+    if dd if=${raw_device} of=/dev/null count=1 >/dev/null 2>&1; then
+        done=true
+        break
+    fi
+
+    sleep 1
+done
+if [[ $done = false ]]; then
+    echo "Failed to access ${raw_device} after 10 tries"
+    exit 1
+fi
+
+writer.${flash_writer} ${raw_device} ${U_BOOT_BUILD_DIR}
+
+# Back to card access for the DUT
+sd-mux-ctrl --device-serial ${sdwire_serial} --dut
