@@ -22,4 +22,21 @@ if [ -z "${console_baud}" ]; then
     console_baud=115200
 fi
 
+# Some boards have a UART built into them and it doesn't appear until the
+# board is powered on. An example is zynq_zybo. Try to handle this by waiting
+# for the console and then continuing as soon as possible (so we don't miss
+# the U-Boot banner).
+if [ -n "${console_wait}" ]; then
+    for i in {0..99}; do
+        if [ -e "${console_dev}" ]; then
+            break
+        fi
+        sleep .1
+    done
+    if [ ! -e "${console_dev}" ]; then
+        echo "Console ${console_dev} not found"
+        exit 1
+    fi
+fi
+
 exec picocom -b "${console_baud}" "${console_dev}"
