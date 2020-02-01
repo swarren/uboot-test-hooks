@@ -20,7 +20,7 @@
 
 console_dev=/dev/ttyusb_port2
 reset_impl=ykush
-flash_impl=sdwire_ykush_raw
+flash_impl=sdwire_poweroff_raw
 power_impl=ykush
 
 flash_writer=sunxi_raw
