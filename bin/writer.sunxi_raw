@@ -33,3 +33,4 @@ echo "Writing to ${device} from build at ${build}"
 
 dd if=/dev/zero of=$device bs=1k count=1024
 dd if=${build}/u-boot-sunxi-with-spl.bin of=$device bs=1024 seek=8
+sync $device
