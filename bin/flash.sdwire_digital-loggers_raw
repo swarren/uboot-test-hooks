@@ -23,7 +23,7 @@
 # https://dlidirect.com/products/new-pro-switch
 
 # It requires these tools:
-# sd-mux-ctrl a`t https://git.tizen.org/cgit/tools/testlab/sd-mux/
+# sd-mux-ctrl at https://git.tizen.org/cgit/tools/testlab/sd-mux/
 # curl to control the power switch
 
 # Power off
