@@ -18,7 +18,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# Designed for using SDwire uSD myx and ykush USB power control:
+# Designed for using SDwire uSD mux and ykush USB power control:
 # https://wiki.tizen.org/SDWire
 # https://www.yepkit.com/products/ykush
 
