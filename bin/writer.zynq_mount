@@ -1,0 +1,41 @@
+# Copyright 2020 Google LLC
+#
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+
+# Writes zynq images to the board
+
+# Args:
+#  $1: Mount point of the sdcard when board is off
+#  $2: U-Boot build directory
+
+set -ex
+
+tmp=$(mktemp -d)
+
+mount=$1
+build=$2
+
+echo "Writing to ${mount} from build at ${build}"
+
+# Copy U-Boot over from the build directory
+cp ${build}/u-boot.bin ${mount}/rpi3-u-boot.bin
+zynq-boot-bin.py -o ${tmp}/boot.bin -u ${build}/spl/u-boot-spl-dtb.bin
+cp ${tmp}/boot.bin ${mount}/BOOT.bin
+cp ${build}/u-boot.img ${mount}/.
+rm -rf ${tmp}
