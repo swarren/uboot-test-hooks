@@ -18,15 +18,42 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# Designed for using SDwire uSD myx and ykush USB power control:
-# https://wiki.tizen.org/SDWire
-# https://www.yepkit.com/products/ykush
+# Handles the common SDwire mounting (caller does power control)
 
-# It requires these tools:
-# sd-mux-ctrl at https://git.tizen.org/cgit/tools/testlab/sd-mux/
-# ykushcmd at https://github.com/Yepkit/ykush
+mount_dir=/media/${mount_point}
 
-# Power off
-ykushcmd -s ${ykush_serial} -d ${ykush_port}
+# Switch over to get USB card access
+sd-mux-ctrl --device-serial ${sdwire_serial} --ts
 
-. flash.sdwire_common_mount
+done=false
+for i in {0..9}; do
+    if out="$(mount UUID=${mount_uuid} 2>&1)"; then
+        done=true
+        break
+    fi
+    echo $out
+
+    # If it is already mounted, try to unmount it first. It may have been
+    # mounted by another user so we won't have the access we need. If this gives
+    # an error then we know we cannot continue
+    if [[ $out == *"already mounted"* ]]; then
+        umount UUID=${mount_uuid}
+    fi
+    sleep 1
+done
+if [[ $done = false ]]; then
+    echo "Failed to mount UUID ${mount_uuid} after 10 tries"
+    exit 1
+fi
+
+# Sanity check
+if ! mountpoint -q ${mount_dir}; then
+    echo "Mount ${mount_dir} not available after 'mount'"
+    exit 1
+fi
+
+writer.${flash_writer} ${mount_dir} ${U_BOOT_BUILD_DIR}
+umount ${mount_dir}
+
+# Back to card access for the DUT
+sd-mux-ctrl --device-serial ${sdwire_serial} --dut
