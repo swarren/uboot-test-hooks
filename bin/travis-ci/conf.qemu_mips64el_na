@@ -22,7 +22,7 @@ console_impl=qemu
 qemu_machine="mips"
 qemu_binary="qemu-system-mips64el"
 qemu_extra_args="-nographic -monitor null -cpu MIPS64R2-generic"
-qemu_kernel_args="-drive if=pflash,file=${U_BOOT_BUILD_DIR}/flash,format=raw"
-qemu_helper_script="qemu-mips"
+qemu_kernel_args="-drive if=pflash,file=${U_BOOT_BUILD_DIR}/flash.img,format=raw"
 reset_impl=none
-flash_impl=none
+flash_impl="create_image_32mb"
+flash_size=4
