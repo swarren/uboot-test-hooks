@@ -5,8 +5,11 @@
 # TODO: Work out a better temp directory
 FLASH_IMG="${U_BOOT_BUILD_DIR}"/flash.img
 
+# Allow custom flash image size
+FLASH_SIZE="${flash_size:=32}"
+
 # Allow custom U-Boot binaries
 U_BOOT_BIN="${flash_u_boot_bin:=u-boot.bin}"
 
-dd if=/dev/zero of="${FLASH_IMG}" count=32 bs=1M
+dd if=/dev/zero of="${FLASH_IMG}" count="${FLASH_SIZE}" bs=1M
 dd if="${U_BOOT_BUILD_DIR}/${U_BOOT_BIN}" of="${FLASH_IMG}" conv=notrunc
