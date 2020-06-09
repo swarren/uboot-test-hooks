@@ -26,5 +26,5 @@ qemu_extra_args="-nographic -cpu MIPS64R2-generic -m 256"
 qemu_kernel_args="-drive if=pflash,file=${U_BOOT_BUILD_DIR}/flash.img,format=raw \
     -netdev user,id=net0,tftp=${UBOOT_TRAVIS_BUILD_DIR} -device pcnet,netdev=net0"
 reset_impl=none
-flash_impl=create_image_32mb
+flash_impl=qemu_gen_padded_image
 flash_size=4

@@ -24,5 +24,5 @@ qemu_binary="qemu-system-mips"
 qemu_extra_args="-nographic -monitor null"
 qemu_kernel_args="-drive if=pflash,file=${U_BOOT_BUILD_DIR}/flash.img,format=raw"
 reset_impl=none
-flash_impl="create_image_32mb"
+flash_impl="qemu_gen_padded_image"
 flash_size=4
