@@ -6,6 +6,6 @@ console_impl=qemu
 qemu_machine="virt"
 qemu_binary="qemu-system-riscv32"
 qemu_extra_args="-smp 4 -m 1G -nographic -netdev user,id=net0,tftp=${UBOOT_TRAVIS_BUILD_DIR} -device virtio-net-device,netdev=net0"
-qemu_kernel_args="-kernel ${U_BOOT_BUILD_DIR}/spl/u-boot-spl -device loader,file=${U_BOOT_BUILD_DIR}/u-boot.itb,addr=0x80200000"
+qemu_kernel_args="-bios ${U_BOOT_BUILD_DIR}/spl/u-boot-spl -device loader,file=${U_BOOT_BUILD_DIR}/u-boot.itb,addr=0x80200000"
 reset_impl=none
 flash_impl=none
