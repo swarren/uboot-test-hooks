@@ -210,8 +210,7 @@ of which must be specified in the board configuration files:
 - As-yet-unpublished scripts to control various USB relay boards.
 
 U-Boot's test framework also requires a `dfu-util` that supports the -p
-command-line option. Many distros don't provide this, so a manually compiled
-binary is included.
+command-line option. Most distros provide this nowadays.
 
 # Python Modules
 
