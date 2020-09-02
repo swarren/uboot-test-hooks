@@ -1,9 +1,15 @@
+# Introduction
+
 This repository contains working example support ("hook") scripts for U-Boot's
 built-in test framework. That framework is located in the `test/py/` directory
 in the U-Boot source tree.
 
 You may use these examples as a reference when creating your own hook scripts,
 or even derive your own scripts directly from the files in this repository.
+
+# Contributing
+
+See [Contributing.md](Contributing.md).
 
 # Flashing Philosophy
 
